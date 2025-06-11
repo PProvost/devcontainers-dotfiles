@@ -36,4 +36,4 @@ if command -v poetry &> /dev/null; then
 fi
 
 # Starts starship
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"

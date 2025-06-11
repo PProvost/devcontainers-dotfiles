@@ -19,6 +19,7 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 # Remove existing files if they exist
 rm -f "$HOME/.aliases"
 rm -f "$HOME/.zshrc"
+rm -f "$HOME/.config/sharship.toml"
 rm -f "$HOME/.gitconfig"
 rm -rf "$PLUGINS_DIR"
 
@@ -30,6 +31,7 @@ mkdir -p "$PLUGINS_DIR"
 ln -s "$SCRIPT_DIR/.aliases" "$HOME/.aliases"
 ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
+ln -s "$SCRIPT_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # if [ -d "$BIN_DIR" ]; then 
 #   echo "Bin ($BIN_DIR) directory already exists. Removing it..."
@@ -38,12 +40,12 @@ ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
 # Create a symlink for the bin directory
 # ln -s "$SCRIPT_DIR/bin" "$BIN_DIR"
 
-# git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
-# git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PLUGINS_DIR/zsh-autocomplete
-# git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $PLUGINS_DIR/fast-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PLUGINS_DIR/zsh-autocomplete
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $PLUGINS_DIR/fast-syntax-highlighting
 
 # Install starship
-# curl -sS https://starship.rs/install.sh | sh -s -- -y
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 # Change the default shell to zsh
 sudo chsh -s "$ZSH_PATH"
