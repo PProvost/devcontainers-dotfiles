@@ -29,6 +29,7 @@ mkdir -p "$PLUGINS_DIR"
 # Create symlinks for the dotfiles
 ln -s "$SCRIPT_DIR/.aliases" "$HOME/.aliases"
 ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
+ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
 
 # if [ -d "$BIN_DIR" ]; then 
 #   echo "Bin ($BIN_DIR) directory already exists. Removing it..."
@@ -37,9 +38,9 @@ ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 # Create a symlink for the bin directory
 # ln -s "$SCRIPT_DIR/bin" "$BIN_DIR"
 
-git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PLUGINS_DIR/zsh-autocomplete
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $PLUGINS_DIR/fast-syntax-highlighting
+# git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
+# git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PLUGINS_DIR/zsh-autocomplete
+# git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $PLUGINS_DIR/fast-syntax-highlighting
 
 # Install starship
 # curl -sS https://starship.rs/install.sh | sh -s -- -y
