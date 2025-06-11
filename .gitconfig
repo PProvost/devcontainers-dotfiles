@@ -1,0 +1,10 @@
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    lg = log --oneline --graph --decorate --all
+    lga = log --oneline --graph --decorate --all --
+    type = cat-file -t
+    dump = cat-file -p
