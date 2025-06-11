@@ -27,7 +27,7 @@ Just copy the following lines to your user settings json:
 
 ```
 {
-    "containers.dotfiles.repository": "https://github.com/matheusfvesco/devcontainers-dotfiles.git",
+    "containers.dotfiles.repository": "https://github.com/PProvost/devcontainers-dotfiles.git",
     "containers.dotfiles.targetPath": "~/dotfiles",
 }
 ```
@@ -36,10 +36,7 @@ or if you use Remote-SSH or Remote-Tunnels:
 
 ```
 {
-    "remote.containers.dotfiles.repository": "https://github.com/matheusfvesco/devcontainers-dotfiles.git",
+    "remote.containers.dotfiles.repository": "https://github.com/PProvost/devcontainers-dotfiles.git",
     "remote.containers.dotfiles.targetPath": "~/dotfiles",
 }
 ```
-
-Or through the UI:
-![vscode UI](images/dotfiles_vscode_settings.png)
