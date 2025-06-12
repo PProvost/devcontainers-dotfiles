@@ -48,7 +48,7 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PL
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $PLUGINS_DIR/fast-syntax-highlighting
 
 # Install starship
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+curl -sS -k  https://starship.rs/install.sh | sh -s -- -y
 
 # Change the default shell to zsh
 sudo chsh -s "$ZSH_PATH"
