@@ -1,23 +1,24 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = '$container$all'
+
 [username]
-show_always = true
-aliases = { "vscode" = "matheusfvesco" }
+aliases = { "vscode" = "pprovost" }
 
 [container]
 symbol = "💻"
 style = "bold red"
 
-#[status]
-#disabled = false
+[line_break]
+disabled = true
 
 [character]
 success_symbol = '[➜](bold green) '
 error_symbol = '[✗ ❯](bold red) '
 
 [os]
-disabled = false
+disabled = true
 
 [aws]
 symbol = "  "
@@ -102,6 +103,7 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+disabled = true
 
 [ocaml]
 symbol = " "
@@ -153,6 +155,7 @@ Windows = "󰍲 "
 
 [package]
 symbol = "󰏗 "
+disabled = true
 
 [perl]
 symbol = " "
