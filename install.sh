@@ -40,7 +40,7 @@ if [ -d "$BIN_DIR" ]; then
   echo "Bin ($BIN_DIR) directory already exists. Removing it..."
   rm -rf "$BIN_DIR"
 fi
-Create a symlink for the bin directory
+# Create a symlink for the bin directory
 ln -s "$SCRIPT_DIR/bin" "$BIN_DIR"
 
 git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
