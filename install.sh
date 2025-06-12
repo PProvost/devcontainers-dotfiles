@@ -17,6 +17,7 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 # copies dotfiles
 
 # Remove existing files if they exist
+echo "Removing existing dotfiles if they exist..."
 rm -f "$HOME/.aliases"
 rm -f "$HOME/.zshrc"
 rm -f "$HOME/.config/sharship.toml"
@@ -24,21 +25,23 @@ rm -f "$HOME/.gitconfig"
 rm -rf "$PLUGINS_DIR"
 
 # Creates root directories if they don't exist
+echo "Creating necessary directories..."
 mkdir -p "$HOME/.config"
 mkdir -p "$PLUGINS_DIR"
 
 # Create symlinks for the dotfiles
+echo "Creating symlinks for dotfiles..."
 ln -s "$SCRIPT_DIR/.aliases" "$HOME/.aliases"
 ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -s "$SCRIPT_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
 
-# if [ -d "$BIN_DIR" ]; then 
-#   echo "Bin ($BIN_DIR) directory already exists. Removing it..."
-#   rm -rf "$BIN_DIR"
-# fi
-# Create a symlink for the bin directory
-# ln -s "$SCRIPT_DIR/bin" "$BIN_DIR"
+if [ -d "$BIN_DIR" ]; then 
+  echo "Bin ($BIN_DIR) directory already exists. Removing it..."
+  rm -rf "$BIN_DIR"
+fi
+Create a symlink for the bin directory
+ln -s "$SCRIPT_DIR/bin" "$BIN_DIR"
 
 git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PLUGINS_DIR/zsh-autocomplete
