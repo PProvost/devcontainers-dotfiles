@@ -14,50 +14,61 @@ BIN_DIR="$HOME/bin"
 
 # Get the directory of the script
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
-# copies dotfiles
 
-# Remove existing files if they exist
+# Remove existing symlinks/files if they exist
 echo "Removing existing dotfiles if they exist..."
 rm -f "$HOME/.aliases"
 rm -f "$HOME/.zshrc"
-rm -f "$HOME/.config/sharship.toml"
+rm -f "$HOME/.config/starship.toml"
 rm -f "$HOME/.gitconfig"
-rm -rf "$PLUGINS_DIR"
+
+# Remove plugins directory if it exists
+if [ -d "$PLUGINS_DIR" ]; then
+  echo "Plugins directory ($PLUGINS_DIR) already exists. Removing it..."
+  rm -rf "$PLUGINS_DIR"
+fi
 
 # Creates root directories if they don't exist
 echo "Creating necessary directories..."
 mkdir -p "$HOME/.config"
 mkdir -p "$PLUGINS_DIR"
 
-# Create symlinks for the dotfiles
+# Create symlinks for the dotfiles, overwriting if they exist
 echo "Creating symlinks for dotfiles..."
-ln -s "$SCRIPT_DIR/.aliases" "$HOME/.aliases"
-ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
-ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
-ln -s "$SCRIPT_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
+ln -sf "$SCRIPT_DIR/.aliases" "$HOME/.aliases"
+ln -sf "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
+ln -sf "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$SCRIPT_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
 
-if [ -d "$BIN_DIR" ]; then 
-  echo "Bin ($BIN_DIR) directory already exists. Removing it..."
+# Remove bin directory if it exists
+if [ -d "$BIN_DIR" ] || [ -L "$BIN_DIR" ]; then 
+  echo "Bin ($BIN_DIR) already exists. Removing it..."
   rm -rf "$BIN_DIR"
 fi
 # Create a symlink for the bin directory
 ln -s "$SCRIPT_DIR/bin" "$BIN_DIR"
 
-git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $PLUGINS_DIR/zsh-autocomplete
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $PLUGINS_DIR/fast-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions "$PLUGINS_DIR/zsh-autosuggestions"
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git "$PLUGINS_DIR/zsh-autocomplete"
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$PLUGINS_DIR/fast-syntax-highlighting"
 
 # Install starship
-curl -sS -k  https://starship.rs/install.sh | sh -s -- -y
+echo "Installing starship..."
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
-# Change the default shell to zsh
-sudo chsh -s "$ZSH_PATH"
+# Change the default shell to zsh if not already set
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+  echo "Changing default shell to zsh..."
+  sudo chsh -s "$ZSH_PATH" "$(whoami)"
 
-# Check if the shell was changed successfully
-if [ $? -eq 0 ]; then
-  echo "Successfully changed the default shell to zsh."
-  echo "Please log out and log back in for the changes to take effect."
+  # Check if the shell was changed successfully
+  if [ $? -eq 0 ]; then
+    echo "Successfully changed the default shell to zsh."
+    echo "Please log out and log back in for the changes to take effect."
+  else
+    echo "Failed to change the default shell."
+    exit 1
+  fi
 else
-  echo "Failed to change the default shell."
-  exit 1
+    echo "Default shell is already zsh."
 fi
