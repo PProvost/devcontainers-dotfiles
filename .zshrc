@@ -36,7 +36,7 @@ if command -v poetry &> /dev/null; then
 fi
 
 zstyle ':autocomplete:*' delay 0.25 # seconds (float)
-LISTMAX = 100   # how many in the list before it asks first
+LISTMAX=100   # how many in the list before it asks first
 
 # Starts starship
 eval "$(starship init zsh)"
