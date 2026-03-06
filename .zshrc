@@ -27,6 +27,21 @@ source $PLUGINS_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $PLUGINS_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
+# Setup for ls coloring on different operating systems
+if [[ "$(uname)" == "Darwin" ]]; then
+    # --- macOS (BSD) Settings ---
+    export CLICOLOR=1
+    export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd" # Linux-like colors
+    alias ls='ls -FGh'
+else
+    # --- Linux (GNU) Settings ---
+    # Check if dircolors is available to set LS_COLORS
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    fi
+    alias ls='ls --color=auto -F'
+fi
+
 # Check if poetry is installed and sets up completions
 if command -v poetry &> /dev/null; then
     [ ! -f ~/.zfunc ] && mkdir -p ~/.zfunc &> /dev/null

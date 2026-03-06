@@ -1,6 +1,12 @@
-alias ll="ls -laF"
+# Common ls Aliases (work on all operating systems--see .zshrc for os-specific settings)
+alias ll='ls -lh'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -C'
+
+# alias ll="ls -laF"
+# alias la='ls -A'
+# alias l='ls -CF'
+
 alias mkdir="mkdir -pv"
 alias ..="cd .."
 alias ~="cd ~"
